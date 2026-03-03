@@ -63,31 +63,38 @@
     </select>
     <br><br>
 
-    <label>Tanggal:</label>
+    <label>Tanggal Kunjungan Rumah :</label>
     <input type="date" name="tanggal" required>
     
-    <label>Nama:</label>
-    <input type="text" name="nama" required>
+    <label>Nama Kepala Keluarga :</label>
+    <input type="text" name="kk" required>
 
-    <label>Email:</label>
-    <input type="email" name="email" required>
+    <label>NIK :</label>
+    <input type="text" name="nik" required>
 
-    <label>Pesan:</label>
-    <textarea name="pesan" required></textarea>
+    <label>Alamat (minimal RT/RW) :</label>
+    <textarea name="alamt" required></textarea>
   </div>
 
   <div class="card">
     <h3>Kondisi Umum</h3>
 
-    <label>Memiliki Jamban:</label>
+    <label>Memiliki Jamban Sehat :</label>
     <select name="jamban" required>
       <option value="">-- Pilih --</option>
       <option value="Ya">Ya</option>
       <option value="Tidak">Tidak</option>
     </select>
 
-    <label>Ventilasi Cukup:</label>
+    <label>Ventilasi cukup (5-10% dari luas ruangan) :</label>
     <select name="ventilasi" required>
+      <option value="">-- Pilih --</option>
+      <option value="Ya">Ya</option>
+      <option value="Tidak">Tidak</option>
+    </select>
+
+<label>Ada yg gangguan jiwa :</label>
+    <select name="gjiwa" required>
       <option value="">-- Pilih --</option>
       <option value="Ya">Ya</option>
       <option value="Tidak">Tidak</option>
@@ -95,6 +102,105 @@
 
     <label>Ada yang TBC:</label>
     <select name="tbc" required>
+      <option value="">-- Pilih --</option>
+      <option value="Ya">Ya</option>
+      <option value="Tidak">Tidak</option>
+    </select>
+
+<label>Ada yg Hipertensi :</label>
+    <select name="hipertensi" required>
+      <option value="">-- Pilih --</option>
+      <option value="Ya">Ya</option>
+      <option value="Tidak">Tidak</option>
+    </select>
+
+<label>Ada yg Diabetes Mellitus :</label>
+    <select name="diabetes" required>
+      <option value="">-- Pilih --</option>
+      <option value="Ya">Ya</option>
+      <option value="Tidak">Tidak</option>
+    </select>
+
+  </div>
+
+<div class="card">
+    <h3>Ibu Hamil (kosongi bila tidak ada bumil)</h3>
+
+    <label>Nama :</label>
+    <select name="nama_bumil">
+      <option value="">-- Pilih --</option>
+      <option value="Ya">Ya</option>
+      <option value="Tidak">Tidak</option>
+    </select>
+
+    <label>Usia Kehamilan :</label>
+    <select name="usia_hamil">
+      <option value="">-- Pilih --</option>
+      <option value="Ya">Ya</option>
+      <option value="Tidak">Tidak</option>
+    </select>
+
+<label>LILA :</label>
+    <input type="text" name="lila">
+
+<label>Punya Buku KIA :</label>
+    <select name="buku_kia">
+      <option value="">-- Pilih --</option>
+      <option value="Ada">Ada</option>
+      <option value="Tidak">Tidak</option>
+    </select>
+
+    <label>Minum TTD 24 jam terakhir :</label>
+    <select name="ttd">
+      <option value="">-- Pilih --</option>
+      <option value="Ya">Ya</option>
+      <option value="Tidak">Tidak</option>
+    </select>
+
+<label>Ada tanda bahaya? :</label>
+    <select name="tandabahaya">
+      <option value="">-- Pilih --</option>
+      <option value="Ya">Ya</option>
+      <option value="Tidak">Tidak</option>
+    </select>
+  </div>
+
+<div class="card">
+    <h3>Ibu Bersalin dan Nifas (kosongi bila tidak ada bufas)</h3>
+
+    <label>Nama :</label>
+    <select name="nama_bumil">
+      <option value="">-- Pilih --</option>
+      <option value="Ya">Ya</option>
+      <option value="Tidak">Tidak</option>
+    </select>
+
+    <label>Usia Kehamilan :</label>
+    <select name="usia_hamil">
+      <option value="">-- Pilih --</option>
+      <option value="Ya">Ya</option>
+      <option value="Tidak">Tidak</option>
+    </select>
+
+<label>LILA :</label>
+    <input type="text" name="lila">
+
+<label>Punya Buku KIA :</label>
+    <select name="buku_kia">
+      <option value="">-- Pilih --</option>
+      <option value="Ada">Ada</option>
+      <option value="Tidak">Tidak</option>
+    </select>
+
+    <label>Minum TTD 24 jam terakhir :</label>
+    <select name="ttd">
+      <option value="">-- Pilih --</option>
+      <option value="Ya">Ya</option>
+      <option value="Tidak">Tidak</option>
+    </select>
+
+<label>Ada tanda bahaya? :</label>
+    <select name="tandabahaya">
       <option value="">-- Pilih --</option>
       <option value="Ya">Ya</option>
       <option value="Tidak">Tidak</option>
@@ -181,7 +287,6 @@ fetch(scriptURL + "?action=getSheets")
 
 </body>
 </html>
-
 
 
 
