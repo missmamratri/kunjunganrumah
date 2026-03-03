@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form Input ke Spreadsheet</title>
+</head>
+<body>
+
+  <h2>Form Input Data</h2>
+
+  <form id="dataForm">
+    <label>Nama:</label><br>
+    <input type="text" name="nama" required><br><br>
+
+    <label>Email:</label><br>
+    <input type="email" name="email" required><br><br>
+
+    <label>Pesan:</label><br>
+    <textarea name="pesan" required></textarea><br><br>
+
+    <button type="submit">Kirim</button>
+  </form>
+
+  <p id="response"></p>
+
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycby5-9QNdNgVFmFkw5zYL1UyN-MguAOiWlte3cAfWt4B/dev';
+    const form = document.getElementById('dataForm');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+
+      fetch(scriptURL, {
+        method: 'POST',
+        body: new FormData(form)
+      })
+      .then(response => {
+        document.getElementById('response').innerHTML = "Data berhasil dikirim!";
+        form.reset();
+      })
+      .catch(error => {
+        document.getElementById('response').innerHTML = "Terjadi kesalahan!";
+      });
+    });
+  </script>
+
+</body>
+</html>
