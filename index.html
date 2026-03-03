@@ -8,6 +8,16 @@
   <h2>Form Input Data</h2>
 
   <form id="dataForm">
+
+    <label>Pilih Sheet:</label><br>
+    <select name="sheetName" required>
+      <option value="">-- Pilih --</option>
+      <option value="Jambu">Jambu</option>
+      <option value="Mawar">Mawar</option>
+      <option value="Melati">Melati</option>
+    </select>
+    <br><br>
+
     <label>Nama:</label><br>
     <input type="text" name="nama" required><br><br>
 
@@ -25,27 +35,27 @@
   <script>
     const scriptURL = 'https://script.google.com/macros/s/AKfycby8hTxq6pRUenwRWF1klZo5PzmP6Ho_bBfpAuz5xCRwVAN1yu_9QGc7p6Ha6G9uuC1U/exec';
     const form = document.getElementById('dataForm');
+    const responseMsg = document.getElementById('response');
 
     form.addEventListener('submit', e => {
       e.preventDefault();
+      responseMsg.innerHTML = "Mengirim...";
 
       fetch(scriptURL, {
         method: 'POST',
+        mode: 'no-cors',
         body: new FormData(form)
       })
-      .then(response => {
-        document.getElementById('response').innerHTML = "Data berhasil dikirim!";
+      .then(() => {
+        responseMsg.innerHTML = "Data berhasil dikirim!";
         form.reset();
       })
       .catch(error => {
-        document.getElementById('response').innerHTML = "Terjadi kesalahan!";
+        responseMsg.innerHTML = "Terjadi kesalahan!";
+        console.error(error);
       });
     });
   </script>
 
 </body>
-
 </html>
-
-
-
