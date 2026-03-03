@@ -113,7 +113,7 @@
 <p id="response"></p>
 
 <script>
-const scriptURL = 'https://script.google.com/macros/s/AKfycbwiTn8KiXZ2EY7VPjmMNyL-fOjuuExZ_vKjfZnNiffi9dGhJDkAn3_Jh6XaWAmmEQLf/exec';
+const scriptURL = 'https://script.google.com/macros/s/AKfycbzOoUEF9Qs-EmO1K1fJgIAkEI9t1WVMs3dyAWzEOBLPONrVNw8zQHudoI1D4hYidC8i/exec';
 const form = document.getElementById('dataForm');
 const responseMsg = document.getElementById('response');
 const itemsContainer = document.getElementById('itemsContainer');
@@ -159,7 +159,7 @@ form.addEventListener('submit', e => {
 
   const sheetSelect = document.getElementById("sheetSelect");
 
-fetch(scriptURL)
+fetch(scriptURL + "?action=getSheets")
   .then(res => res.json())
   .then(data => {
 
@@ -181,6 +181,7 @@ fetch(scriptURL)
 
 </body>
 </html>
+
 
 
 
