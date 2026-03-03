@@ -57,13 +57,11 @@
 <form id="dataForm">
 
   <div class="card">
-    <label>Pilih Sheet:</label>
-    <select name="sheetName" required>
-      <option value="">-- Pilih --</option>
-      <option value="Jambu">Jambu</option>
-      <option value="Mawar">Mawar</option>
-      <option value="Melati">Melati</option>
+    <label>Pilih Sheet:</label><br>
+    <select name="sheetName" id="sheetSelect" required>
+      <option value="">Memuat sheet...</option>
     </select>
+    <br><br>
 
     <label>Tanggal:</label>
     <input type="date" name="tanggal" required>
@@ -158,10 +156,32 @@ form.addEventListener('submit', e => {
   console.error(err);
 });
 });
+
+  const sheetSelect = document.getElementById("sheetSelect");
+
+fetch(scriptURL)
+  .then(res => res.json())
+  .then(data => {
+
+    sheetSelect.innerHTML = '<option value="">-- Pilih Sheet --</option>';
+
+    data.forEach(name => {
+      const option = document.createElement("option");
+      option.value = name;
+      option.textContent = name;
+      sheetSelect.appendChild(option);
+    });
+
+  })
+  .catch(err => {
+    sheetSelect.innerHTML = '<option value="">Gagal memuat sheet</option>';
+    console.error(err);
+  });
 </script>
 
 </body>
 </html>
+
 
 
 
