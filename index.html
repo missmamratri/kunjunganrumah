@@ -135,27 +135,22 @@ form.addEventListener('submit', e => {
   responseMsg.innerHTML = "Mengirim...";
 
   fetch(scriptURL, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    body: new URLSearchParams(new FormData(form))
-  })
-  .then(response => response.text())
-  .then(data => {
-    responseMsg.innerHTML = data;
-    form.reset();
-    itemsContainer.innerHTML = "";
-    addItem();
-  })
-  .catch(error => {
-    responseMsg.innerHTML = "Terjadi kesalahan!";
-    console.error(error);
-  });
+  method: 'POST',
+  body: new FormData(form)
+})
+.then(res => res.text())
+.then(data => {
+  responseMsg.innerHTML = data;
+})
+.catch(err => {
+  responseMsg.innerHTML = "ERROR: " + err;
+  console.error(err);
+});
 });
 </script>
 
 </body>
 </html>
+
 
 
