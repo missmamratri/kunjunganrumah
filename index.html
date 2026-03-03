@@ -65,6 +65,9 @@
       <option value="Melati">Melati</option>
     </select>
 
+    <label>Tanggal:</label>
+    <input type="date" name="tanggal" required>
+    
     <label>Nama:</label>
     <input type="text" name="nama" required>
 
@@ -112,7 +115,7 @@
 <p id="response"></p>
 
 <script>
-const scriptURL = 'https://script.google.com/macros/s/AKfycbwWojoHMh-OXHkWJzm-Zt-MBEppBXeUVzgJSBqpESWKI5vxxUzD7CFzNiiciIiaufr2/exec';
+const scriptURL = 'https://script.google.com/macros/s/AKfycbwiTn8KiXZ2EY7VPjmMNyL-fOjuuExZ_vKjfZnNiffi9dGhJDkAn3_Jh6XaWAmmEQLf/exec';
 const form = document.getElementById('dataForm');
 const responseMsg = document.getElementById('response');
 const itemsContainer = document.getElementById('itemsContainer');
@@ -151,6 +154,7 @@ form.addEventListener('submit', e => {
 
 </body>
 </html>
+
 
 
 
