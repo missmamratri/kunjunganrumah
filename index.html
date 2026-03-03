@@ -1,93 +1,159 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Form Input ke Spreadsheet</title>
+  <title>Form Input Data</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+      padding: 30px;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+    h2 { margin-top: 0; }
+    label { font-weight: bold; }
+    input, select, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: #2e86de;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #1b4f72;
+    }
+    .item-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .item-row input {
+      flex: 1;
+    }
+    .add-btn {
+      background: #27ae60;
+      margin-bottom: 15px;
+    }
+  </style>
 </head>
 <body>
 
-  <h2>Form Input Data</h2>
+<h2>Form Input Data</h2>
 
-  <form id="dataForm">
+<form id="dataForm">
 
-    <label>Pilih Sheet:</label><br>
+  <div class="card">
+    <label>Pilih Sheet:</label>
     <select name="sheetName" required>
       <option value="">-- Pilih --</option>
       <option value="Jambu">Jambu</option>
       <option value="Mawar">Mawar</option>
       <option value="Melati">Melati</option>
     </select>
-    <br><br>
 
-    <label>Nama:</label><br>
-    <input type="text" name="nama" required><br><br>
+    <label>Nama:</label>
+    <input type="text" name="nama" required>
 
-    <label>Email:</label><br>
-    <input type="email" name="email" required><br><br>
+    <label>Email:</label>
+    <input type="email" name="email" required>
 
-    <label>Pesan:</label><br>
-    <textarea name="pesan" required></textarea><br><br>
+    <label>Pesan:</label>
+    <textarea name="pesan" required></textarea>
+  </div>
+
+  <div class="card">
     <h3>Kondisi Umum</h3>
 
-<label>Memiliki Jamban:</label><br>
-<select name="jamban" required>
-  <option value="">-- Pilih --</option>
-  <option value="Ya">Ya</option>
-  <option value="Tidak">Tidak</option>
-</select>
-<br><br>
+    <label>Memiliki Jamban:</label>
+    <select name="jamban" required>
+      <option value="">-- Pilih --</option>
+      <option value="Ya">Ya</option>
+      <option value="Tidak">Tidak</option>
+    </select>
 
-<label>Ventilasi Cukup:</label><br>
-<select name="ventilasi" required>
-  <option value="">-- Pilih --</option>
-  <option value="Ya">Ya</option>
-  <option value="Tidak">Tidak</option>
-</select>
-<br><br>
+    <label>Ventilasi Cukup:</label>
+    <select name="ventilasi" required>
+      <option value="">-- Pilih --</option>
+      <option value="Ya">Ya</option>
+      <option value="Tidak">Tidak</option>
+    </select>
 
-<label>Ada yang TBC:</label><br>
-<select name="tbc" required>
-  <option value="">-- Pilih --</option>
-  <option value="Ya">Ya</option>
-  <option value="Tidak">Tidak</option>
-</select>
-<br><br>
-    <button type="submit">Kirim</button>
-  </form>
+    <label>Ada yang TBC:</label>
+    <select name="tbc" required>
+      <option value="">-- Pilih --</option>
+      <option value="Ya">Ya</option>
+      <option value="Tidak">Tidak</option>
+    </select>
+  </div>
 
-  <p id="response"></p>
+  <div class="card">
+    <h3>Barang yang Dibutuhkan</h3>
+    <div id="itemsContainer"></div>
+    <button type="button" class="add-btn" onclick="addItem()">+ Tambah Barang</button>
+  </div>
 
-  <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxpDVAl_AQXJ5LOSoLhai2KeDsyCiSGb0fMItHyR5aGVqGUgK8GIZ_TcKNt9mqGgL05/exec';
-    const form = document.getElementById('dataForm');
-    const responseMsg = document.getElementById('response');
+  <button type="submit">Kirim</button>
+</form>
 
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      responseMsg.innerHTML = "Mengirim...";
+<p id="response"></p>
 
-      fetch(scriptURL, {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/x-www-form-urlencoded'
-  },
-  body: new URLSearchParams(new FormData(form))
-})
-.then(response => response.text())
-.then(data => {
-  responseMsg.innerHTML = data;
-  form.reset();
-})
-.catch(error => {
-  responseMsg.innerHTML = "Terjadi kesalahan!";
-  console.error(error);
+<script>
+const scriptURL = 'URL_WEB_APP_ANDA';
+const form = document.getElementById('dataForm');
+const responseMsg = document.getElementById('response');
+const itemsContainer = document.getElementById('itemsContainer');
+
+function addItem() {
+  const div = document.createElement('div');
+  div.className = 'item-row';
+  div.innerHTML = `
+    <input type="text" name="barang[]" placeholder="Nama Barang (contoh: Pulpen)" required>
+    <input type="number" name="jumlah[]" placeholder="Jumlah" required>
+    <input type="text" name="keterangan[]" placeholder="Keterangan (contoh: Tinta Merah)">
+  `;
+  itemsContainer.appendChild(div);
+}
+
+addItem(); // default 1 baris
+
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  responseMsg.innerHTML = "Mengirim...";
+
+  fetch(scriptURL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: new URLSearchParams(new FormData(form))
+  })
+  .then(response => response.text())
+  .then(data => {
+    responseMsg.innerHTML = data;
+    form.reset();
+    itemsContainer.innerHTML = "";
+    addItem();
+  })
+  .catch(error => {
+    responseMsg.innerHTML = "Terjadi kesalahan!";
+    console.error(error);
+  });
 });
-    });
-  </script>
+</script>
 
 </body>
 </html>
-
-
-
-
-
