@@ -113,7 +113,7 @@
 <p id="response"></p>
 
 <script>
-const scriptURL = 'https://script.google.com/macros/s/AKfycbzOoUEF9Qs-EmO1K1fJgIAkEI9t1WVMs3dyAWzEOBLPONrVNw8zQHudoI1D4hYidC8i/exec';
+const scriptURL = 'https://script.google.com/macros/s/AKfycbzOoUEF9Qs-EmO1K1fJgIAkEI9t1WVMs3dyAWzEOBLPONrVNw8zQHudoI1D4hYidC8i/exec?action=getSheets';
 const form = document.getElementById('dataForm');
 const responseMsg = document.getElementById('response');
 const itemsContainer = document.getElementById('itemsContainer');
@@ -181,6 +181,7 @@ fetch(scriptURL + "?action=getSheets")
 
 </body>
 </html>
+
 
 
 
