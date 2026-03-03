@@ -124,8 +124,8 @@ function addItem() {
   const div = document.createElement('div');
   div.className = 'item-row';
   div.innerHTML = `
-    <input type="text" name="barang[]" placeholder="Nama Barang (contoh: Pulpen)" required>
-    <input type="number" name="jumlah[]" placeholder="Jumlah" required>
+    <input type="text" name="barang[]" placeholder="Nama Barang (contoh: Pulpen)">
+    <input type="number" name="jumlah[]" placeholder="Jumlah">
     <input type="text" name="keterangan[]" placeholder="Keterangan (contoh: Tinta Merah)">
   `;
   itemsContainer.appendChild(div);
@@ -162,6 +162,7 @@ form.addEventListener('submit', e => {
 
 </body>
 </html>
+
 
 
 
