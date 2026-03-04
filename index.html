@@ -3,8 +3,8 @@
 <head>
   <title>Form Rekapitulasi Kunjungan Rumah</title>
   <style>
-    body { font-family: Arial; background:#f4f6f9; padding:30px; }
-    .card { background:white; padding:20px; border-radius:10px; margin-bottom:20px; box-shadow:0 4px 10px rgba(0,0,0,0.1);}
+    body { font-family: Arial, sans-serif; background:#f4f6f9; padding:30px; }
+    .card { background:white; padding:20px; border-radius:10px; margin-bottom:20px; box-shadow:0 4px 10px rgba(0,0,0,0.1); }
     input, select, textarea { width:100%; padding:8px; margin:5px 0 15px; border-radius:6px; border:1px solid #ccc; }
     button { background:#2e86de; color:white; border:none; padding:10px 15px; border-radius:6px; cursor:pointer; }
     button:hover { background:#1b4f72; }
@@ -90,9 +90,9 @@
   </div>
 
   <div class="card">
-    <h3>Anggota Keluarga (Bisa Tambah Baris)</h3>
+    <h3>Anggota Keluarga</h3>
     <div id="anggotaContainer"></div>
-    <button type="button" class="add-btn" onclick="addAnggota()">+ Tambah Anggota</button>
+    <button type="button" class="add-btn" onclick="addAnggota()">+ Tambah Baris</button>
   </div>
 
   <button type="submit">Kirim</button>
@@ -121,6 +121,7 @@ function addAnggota() {
 
 addAnggota();
 
+// ===== SUBMIT HANDLER =====
 form.addEventListener("submit", function() {
   responseMsg.innerText = "Mengirim...";
 });
@@ -132,15 +133,16 @@ document.querySelector("iframe").addEventListener("load", function() {
   addAnggota();
 });
 
+// ===== LOAD SHEETS =====
 function loadSheets(data) {
   const select = document.getElementById("sheetSelect");
   select.innerHTML = "<option value=''>-- Pilih Sheet --</option>";
 
   data.forEach(name => {
-    const opt = document.createElement("option");
-    opt.value = name;
-    opt.textContent = name;
-    select.appendChild(opt);
+    const option = document.createElement("option");
+    option.value = name;
+    option.textContent = name;
+    select.appendChild(option);
   });
 }
 
@@ -155,4 +157,3 @@ window.onload = requestSheets;
 
 </body>
 </html>
-
