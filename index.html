@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Form Input Data</title>
+  <title>Form Rekapitulasi Kunjungan Rumah</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -127,11 +127,7 @@
     <h3>Ibu Hamil (kosongi bila tidak ada bumil)</h3>
 
     <label>Nama :</label>
-    <select name="nama_bumil">
-      <option value="">-- Pilih --</option>
-      <option value="Ya">Ya</option>
-      <option value="Tidak">Tidak</option>
-    </select>
+    <input type="text" name="nama_bumil">
 
     <label>Usia Kehamilan :</label>
     <select name="usia_hamil">
@@ -169,21 +165,7 @@
     <h3>Ibu Bersalin dan Nifas (kosongi bila tidak ada bufas)</h3>
 
     <label>Nama :</label>
-    <select name="nama_bumil">
-      <option value="">-- Pilih --</option>
-      <option value="Ya">Ya</option>
-      <option value="Tidak">Tidak</option>
-    </select>
-
-    <label>Usia Kehamilan :</label>
-    <select name="usia_hamil">
-      <option value="">-- Pilih --</option>
-      <option value="Ya">Ya</option>
-      <option value="Tidak">Tidak</option>
-    </select>
-
-<label>LILA :</label>
-    <input type="text" name="lila">
+    <input type="text" name="nama_bufasl">
 
 <label>Punya Buku KIA :</label>
     <select name="buku_kia">
@@ -191,9 +173,72 @@
       <option value="Ada">Ada</option>
       <option value="Tidak">Tidak</option>
     </select>
+    
+<label>Persalinan Normal :</label>
+    <select name="salin_normal">
+      <option value="">-- Pilih --</option>
+      <option value="Ya">Ya</option>
+      <option value="Tidak">Tidak</option>
+    </select>
 
-    <label>Minum TTD 24 jam terakhir :</label>
-    <select name="ttd">
+<label>Inisiasi Menyusu Dini :</label>
+    <select name="imd">
+      <option value="">-- Pilih --</option>
+      <option value="Ya">Ya</option>
+      <option value="Tidak">Tidak</option>
+    </select>
+
+<label>Punya kapsul Vit. A :</label>
+    <select name="vit_A">
+      <option value="">-- Pilih --</option>
+      <option value="Ya">Ya</option>
+      <option value="Tidak">Tidak</option>
+    </select>
+
+<label>Menyusui :</label>
+    <select name="menyusui">
+      <option value="">-- Pilih --</option>
+      <option value="Ya">Ya</option>
+      <option value="Tidak">Tidak</option>
+    </select>
+
+    <label>KB Pasca Persalinan :</label>
+    <select name="kbpasca">
+      <option value="">-- Pilih --</option>
+      <option value="Ya">Ya</option>
+      <option value="Tidak">Tidak</option>
+    </select>
+  </div>
+
+<div class="card">
+    <h3>Bayi 0-6 bulan (kosongi bila tidak ada bayi 0-6 bulan)</h3>
+
+    <label>Nama :</label>
+    <input type="text" name="nama_bayi">
+
+<label>Punya Buku KIA :</label>
+    <select name="buku_kia">
+      <option value="">-- Pilih --</option>
+      <option value="Ada">Ada</option>
+      <option value="Tidak">Tidak</option>
+    </select>
+    
+<label>ASI Eksklusif :</label>
+    <select name="asi_x">
+      <option value="">-- Pilih --</option>
+      <option value="Ya">Ya</option>
+      <option value="Tidak">Tidak</option>
+    </select>
+
+<label>Imunisasi Lengkap :</label>
+    <select name="imunisasi">
+      <option value="">-- Pilih --</option>
+      <option value="Ya">Ya</option>
+      <option value="Tidak">Tidak</option>
+    </select>
+
+<label>Timbang BB & Ukur TB Tiap Bulan:</label>
+    <select name="timbang">
       <option value="">-- Pilih --</option>
       <option value="Ya">Ya</option>
       <option value="Tidak">Tidak</option>
@@ -205,13 +250,19 @@
       <option value="Ya">Ya</option>
       <option value="Tidak">Tidak</option>
     </select>
+
+    <div class="card">
+    <h3>Balita & Prasekolah (> 6 bulan s.d. 6 tahun kurang 1 hari) -  kosongi bila tidak ada balita & prasekolah</h3>
+    <div id="itemsContainer"></div>
+    <button type="button" class="add-btn" onclick="addItem()">+ Tambah Balita</button>
   </div>
 
-  <div class="card">
-    <h3>Barang yang Dibutuhkan</h3>
+<div class="card">
+    <h3>Anak & Remaja (6 - 18 th) -  kosongi bila tidak ada anak & remaja</h3>
     <div id="itemsContainer"></div>
-    <button type="button" class="add-btn" onclick="addItem()">+ Tambah Barang</button>
+    <button type="button" class="add-btn" onclick="addItem()">+ Tambah Balita</button>
   </div>
+
 
   <button type="submit">Kirim</button>
 </form>
@@ -297,4 +348,99 @@ fetch(scriptURL + "?action=getSheets")
 
 
 
+	function doPost(e) {
+
+  var sheetName = e.parameter.sheetName;
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(sheetName);
+
+  if (!sheet) {
+    return ContentService.createTextOutput("Sheet tidak ditemukan");
+  }
+
+  var startRow = 5;
+  var lastRow = sheet.getLastRow();
+  var nextRow = lastRow < startRow ? startRow : lastRow + 1;
+
+  // ===== ID MENGIKUTI NOMOR TERAKHIR DI KOLOM A =====
+  var lastID = 0;
+  if (lastRow >= startRow) {
+    var idValues = sheet.getRange(startRow, 1, lastRow - startRow + 1).getValues();
+    for (var i = idValues.length - 1; i >= 0; i--) {
+      if (idValues[i][0]) {
+        lastID = parseInt(idValues[i][0]);
+        break;
+      }
+    }
+  }
+  var newID = lastID + 1;
+
+  // ===== DATA UTAMA =====
+  var tanggal = e.parameter.tanggal;
+  var nama = e.parameter.nama;
+  var email = e.parameter.email;
+  var pesan = e.parameter.pesan;
+  var jamban = e.parameter.jamban;
+  var ventilasi = e.parameter.ventilasi;
+  var tbc = e.parameter.tbc;
+
+  var barangList = e.parameters["barang[]"] || [];
+  var jumlahList = e.parameters["jumlah[]"] || [];
+  var ketList = e.parameters["keterangan[]"] || [];
+
+  var rows = [];
+
+  for (var i = 0; i < barangList.length; i++) {
+
+    if (i == 0) {
+      // ===== BARANG PERTAMA SEJAJAR DENGAN DATA UTAMA =====
+      rows.push([
+        newID,
+        tanggal,
+        nama,
+        email,
+        pesan,
+        jamban,
+        ventilasi,
+        tbc,
+        barangList[i],
+        jumlahList[i],
+        ketList[i]
+      ]);
+    } else {
+      // ===== BARIS BARANG BERIKUTNYA =====
+      rows.push([
+        "", "", "", "", "", "", "", "",
+        barangList[i],
+        jumlahList[i],
+        ketList[i]
+      ]);
+    }
+  }
+
+  sheet.getRange(nextRow, 1, rows.length, 11).setValues(rows);
+
+  return ContentService
+    .createTextOutput("Data berhasil disimpan dengan ID: " + newID)
+    .setMimeType(ContentService.MimeType.TEXT);
+}
+
+function doGet(e) {
+
+  if (e.parameter.action == "getSheets") {
+
+    var sheets = SpreadsheetApp.getActiveSpreadsheet().getSheets();
+    var sheetNames = [];
+
+    for (var i = 0; i < sheets.length; i++) {
+      sheetNames.push(sheets[i].getName());
+    }
+
+    return ContentService
+      .createTextOutput(JSON.stringify(sheetNames))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+
+  return ContentService
+    .createTextOutput("Invalid Request");
+}
 
