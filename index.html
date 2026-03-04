@@ -382,27 +382,29 @@ form.addEventListener('submit', e => {
   const sheetSelect = document.getElementById("sheetSelect");
 
 fetch(scriptURL + "?action=getSheets")
-  .then(res => res.json())
-  .then(data => {
+  .then(res => res.text())
+  .then(text => {
+    const data = JSON.parse(text);
+    const select = document.getElementById("namaSheet");
 
-    sheetSelect.innerHTML = '<option value="">-- Pilih Sheet --</option>';
+    select.innerHTML = "";
 
     data.forEach(name => {
       const option = document.createElement("option");
       option.value = name;
       option.textContent = name;
-      sheetSelect.appendChild(option);
+      select.appendChild(option);
     });
-
   })
   .catch(err => {
-    sheetSelect.innerHTML = '<option value="">Gagal memuat sheet</option>';
     console.error(err);
+    document.getElementById("response").innerText = "Gagal memuat sheet";
   });
 </script>
 
 </body>
 </html>
+
 
 
 
