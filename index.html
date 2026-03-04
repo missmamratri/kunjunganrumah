@@ -378,31 +378,48 @@ form.addEventListener('submit', e => {
 });
 });
 
-  const sheetSelect = document.getElementById("sheetSelect");
+  window.addEventListener("DOMContentLoaded", function () {
 
-fetch(scriptURL + "?action=getSheets")
-  .then(res => res.text())
-  .then(text => {
-    const data = JSON.parse(text);
-    const select = document.getElementById("namaSheet");
+  const select = document.querySelector("select[name='sheetName']");
+  const responseMsg = document.getElementById("response");
 
-    select.innerHTML = "";
+  responseMsg.innerText = "Memuat sheet...";
 
-    data.forEach(name => {
-      const option = document.createElement("option");
-      option.value = name;
-      option.textContent = name;
-      select.appendChild(option);
+  fetch(scriptURL + "?action=getSheets")
+    .then(response => response.text())
+    .then(text => {
+
+      try {
+        const sheets = JSON.parse(text);
+
+        select.innerHTML = "<option value=''>-- Pilih --</option>";
+
+        sheets.forEach(name => {
+          const option = document.createElement("option");
+          option.value = name;
+          option.textContent = name;
+          select.appendChild(option);
+        });
+
+        responseMsg.innerText = "";
+
+      } catch (err) {
+        console.error("Parsing error:", text);
+        responseMsg.innerText = "Format response tidak valid";
+      }
+
+    })
+    .catch(error => {
+      console.error("Fetch error:", error);
+      responseMsg.innerText = "Gagal memuat sheet";
     });
-  })
-  .catch(err => {
-    console.error(err);
-    document.getElementById("response").innerText = "Gagal memuat sheet";
-  });
+
+});
 </script>
 
 </body>
 </html>
+
 
 
 
