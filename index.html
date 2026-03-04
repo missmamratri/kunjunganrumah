@@ -140,7 +140,7 @@
     <input type="text" name="lila">
 
 <label>Punya Buku KIA :</label>
-    <select name="buku_kia">
+    <select name="kia_bumil">
       <option value="">-- Pilih --</option>
       <option value="Ada">Ada</option>
       <option value="Tidak">Tidak</option>
@@ -168,7 +168,7 @@
     <input type="text" name="nama_bufasl">
 
 <label>Punya Buku KIA :</label>
-    <select name="buku_kia">
+    <select name="kia_bufas">
       <option value="">-- Pilih --</option>
       <option value="Ada">Ada</option>
       <option value="Tidak">Tidak</option>
@@ -262,7 +262,7 @@ function addBayi() {
     <input type="text" name="bayi[]" placeholder="Nama Bayi">
     <input type="text" name="buku_KIA[]" placeholder="Punya buku KIA">
     <input type="text" name="asi_x[]" placeholder="Asi Eksklusif">
-    <input type="text" name="imunisasi[]" placeholder="Imunisasi Lengkap">
+    <input type="text" name="imun_bayi[]" placeholder="Imunisasi Lengkap">
     <input type="text" name="timbang[]" placeholder="Timbang BB & Ukur TB tiap bulan">
     <input type="text" name="bahaya[]" placeholder="Ada tanda bahaya?">
 
@@ -277,10 +277,10 @@ function addPra() {
   div.className = 'item-row';
   div.innerHTML = `
     <input type="text" name="pra[]" placeholder="Nama">
-    <input type="date" name="tgl_lahir[]" placeholder="Tanggal Lahir">
-    <input type="text" name="buku_KIA[]" placeholder="Punya buku KIA">
-    <input type="text" name="imunisasi[]" placeholder="Imunisasi Lengkap">
-    <input type="text" name="timbang[]" placeholder="Timbang BB & Ukur TB tiap bulan">
+    <input type="date" name="tgl_lahir1[]" placeholder="Tanggal Lahir">
+    <input type="text" name="pra_KIA[]" placeholder="Punya buku KIA">
+    <input type="text" name="imun_pra[]" placeholder="Imunisasi Lengkap">
+    <input type="text" name="timbang_pra[]" placeholder="Timbang BB & Ukur TB tiap bulan">
     <input type="text" name="mpasi[]" placeholder="MP-ASI kaya protein hewani">
     <input type="text" name="obatcacing[]" placeholder="Dapat obat cacing?">
     <input type="text" name="vit_A[]" placeholder="Dapat Vit. A?">
@@ -296,7 +296,7 @@ function addRemaja() {
   div.className = 'item-row';
   div.innerHTML = `
     <input type="text" name="remaja[]" placeholder="Nama">
-    <input type="date" name="tgl_lahir[]" placeholder="Tanggal Lahir">
+    <input type="date" name="tgl_lahir2[]" placeholder="Tanggal Lahir">
     <input type="text" name="pernah1[]" placeholder="Pernah timbang & ukur TB 3 bulan terakhir">
     <input type="text" name="pernah2[]" placeholder="Pernah cek tensi 1 tahun terakhir (untuk remaja 15 th ke atas)">
     <input type="text" name="pernah3[]" placeholder="Pernah skrining Hb 1 tahun terakhir (untuk remaja putri)">
@@ -315,12 +315,12 @@ function addProduktif() {
   div.className = 'item-row';
   div.innerHTML = `
     <input type="text" name="produktif[]" placeholder="Nama">
-    <input type="date" name="tgl_lahir[]" placeholder="Tanggal Lahir">
+    <input type="date" name="tgl_lahir3[]" placeholder="Tanggal Lahir">
     <input type="text" name="riwayat[]" placeholder="Riwayat Penyakit (Hipertensi, DM, Stroke, Jantung, Asma, Kanker, Kolesterol)">
     <input type="text" name="obatH[]" placeholder="Bila Hipertensi, minum obat teratur">
     <input type="text" name="kbmenikah[]" placeholder="Pakai KB (bila sudah menikah)">
-    <input type="text" name="rokok[]" placeholder="Merokok">
-    <input type="text" name="gejalaT[]" placeholder="Gejala TBC">
+    <input type="text" name="rokok2[]" placeholder="Merokok">
+    <input type="text" name="gejalaT2[]" placeholder="Gejala TBC">
 
   `;
   produktifContainer.appendChild(div);
@@ -332,12 +332,12 @@ function addLansia() {
   const div = document.createElement('div');
   div.className = 'item-row';
   div.innerHTML = `
-    <input type="text" name="produktif[]" placeholder="Nama">
-    <input type="date" name="tgl_lahir[]" placeholder="Tanggal Lahir">
-    <input type="text" name="riwayat[]" placeholder="Riwayat Penyakit (Hipertensi, DM, Stroke, Jantung, Asma, Kanker, Kolesterol)">
+    <input type="text" name="lansia[]" placeholder="Nama">
+    <input type="date" name="tgl_lahir4[]" placeholder="Tanggal Lahir">
+    <input type="text" name="riwayat2[]" placeholder="Riwayat Penyakit (Hipertensi, DM, Stroke, Jantung, Asma, Kanker, Kolesterol)">
     <input type="text" name="kesulitan[]" placeholder="Ada kesulitan dalam aktivitas gerak sehari-hari">
-    <input type="text" name="rokok[]" placeholder="Merokok">
-    <input type="text" name="gejalaT[]" placeholder="Gejala TBC">
+    <input type="text" name="rokok3[]" placeholder="Merokok">
+    <input type="text" name="gejalaT3[]" placeholder="Gejala TBC">
 
   `;
   lansiaContainer.appendChild(div);
