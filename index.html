@@ -212,31 +212,31 @@
 
     <div class="card">
     <h3> Bayi 0-6 bulan (kosongi bila tidak ada bayi 0-6 bulan) (Y/T)</h3>
-    <div id="itemsContainer"></div>
+    <div id="bayiContainer"></div>
     <button type="button" class="add-btn" onclick="addBayi()">+ Tambah Bayi</button>
   </div>
 
     <div class="card">
     <h3>Balita & Prasekolah (> 6 bulan s.d. 6 tahun kurang 1 hari) -  kosongi bila tidak ada balita & prasekolah</h3>
-    <div id="itemsContainer"></div>
+    <div id="praContainer"></div>
     <button type="button" class="add-btn" onclick="addPra()">+ Tambah Balita</button>
   </div>
 
 <div class="card">
     <h3>Anak & Remaja (6 - 18 th) -  kosongi bila tidak ada anak & remaja</h3>
-    <div id="itemsContainer"></div>
+    <div id="remajaContainer"></div>
     <button type="button" class="add-btn" onclick="addRemaja()">+ Tambah Remaja</button>
   </div>
 
 <div class="card">
     <h3>Usia Produktif (19 - 59 th)-  kosongi bila tidak ada usia produktif</h3>
-    <div id="itemsContainer"></div>
+    <div id="produktifContainer"></div>
     <button type="button" class="add-btn" onclick="addProduktif()">+ Tambah Balita</button>
   </div>
 
 <div class="card">
     <h3>Lansia (60 tahun ke atas)-  kosongi bila tidak ada lansia</h3>
-    <div id="itemsContainer"></div>
+    <div id="LansiaContainer"></div>
     <button type="button" class="add-btn" onclick="addLansia()">+ Tambah Lansia</button>
   </div>
 
@@ -249,7 +249,11 @@
 const scriptURL = 'https://script.google.com/macros/s/AKfycbzOoUEF9Qs-EmO1K1fJgIAkEI9t1WVMs3dyAWzEOBLPONrVNw8zQHudoI1D4hYidC8i/exec?action=getSheets';
 const form = document.getElementById('dataForm');
 const responseMsg = document.getElementById('response');
-const itemsContainer = document.getElementById('itemsContainer');
+const itemsContainer = document.getElementById('bayiContainer');
+const itemsContainer = document.getElementById('praContainer');
+const itemsContainer = document.getElementById('remajaContainer');
+const itemsContainer = document.getElementById('produktifContainer');
+const itemsContainer = document.getElementById('lansiaContainer');
 
 function addBayi() {
   const div = document.createElement('div');
