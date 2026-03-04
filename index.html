@@ -3,51 +3,14 @@
 <head>
   <title>Form Rekapitulasi Kunjungan Rumah</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f6f9;
-      padding: 30px;
-    }
-    .card {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      margin-bottom: 20px;
-    }
-    h2 { margin-top: 0; }
-    label { font-weight: bold; }
-    input, select, textarea {
-      width: 100%;
-      padding: 8px;
-      margin-top: 5px;
-      margin-bottom: 15px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-    }
-    button {
-      background: #2e86de;
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #1b4f72;
-    }
-    .item-row {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
-    .item-row input {
-      flex: 1;
-    }
-    .add-btn {
-      background: #27ae60;
-      margin-bottom: 15px;
-    }
+    body { font-family: Arial; background:#f4f6f9; padding:30px; }
+    .card { background:white; padding:20px; border-radius:10px; margin-bottom:20px; box-shadow:0 4px 10px rgba(0,0,0,0.1);}
+    input, select, textarea { width:100%; padding:8px; margin:5px 0 15px; border-radius:6px; border:1px solid #ccc; }
+    button { background:#2e86de; color:white; border:none; padding:10px 15px; border-radius:6px; cursor:pointer; }
+    button:hover { background:#1b4f72; }
+    .item-row { display:flex; gap:10px; margin-bottom:10px; }
+    .item-row input { flex:1; }
+    .add-btn { background:#27ae60; }
   </style>
 </head>
 <body>
@@ -55,191 +18,81 @@
 <h2>Form Input Data</h2>
 
 <form id="dataForm"
-  action="https://script.google.com/macros/s/AKfycbyGWpBL06VEX1dS7IzvhPiT7_5hfnlkGZ5MmzBWxKhBYBiWGHBMnOZR3EN2xmm0RVHK/exec" 
+  action="https://script.google.com/macros/s/AKfycbwrMpyBKZaxOy0QVPAKZwLvMUeANqB8E6Th4-88WtSHIIp7qHzjqdHG9l0drzcsX8o/exec"
   method="POST"
-  target="hidden_iframe"
-  onsubmit="submitted=true;"
->
+  target="hidden_iframe">
+
   <iframe name="hidden_iframe" style="display:none;"></iframe>
 
   <div class="card">
-    <label>Pilih Sheet:</label><br>
+    <label>Pilih Sheet:</label>
     <select name="sheetName" id="sheetSelect" required>
       <option value="">Memuat sheet...</option>
     </select>
-    <br><br>
 
-    <label>Tanggal Kunjungan Rumah :</label>
+    <label>Tanggal:</label>
     <input type="date" name="tanggal" required>
-    
-    <label>Nama Kepala Keluarga :</label>
+
+    <label>Nama KK:</label>
     <input type="text" name="kk" required>
 
-    <label>NIK :</label>
+    <label>NIK:</label>
     <input type="text" name="nik" required>
 
-    <label>Alamat (minimal RT/RW) :</label>
+    <label>Alamat:</label>
     <textarea name="alamt" required></textarea>
   </div>
 
   <div class="card">
     <h3>Kondisi Umum</h3>
 
-    <label>Memiliki Jamban Sehat :</label>
+    <label>Jamban:</label>
     <select name="jamban" required>
       <option value="">-- Pilih --</option>
-      <option value="Ya">Ya</option>
-      <option value="Tidak">Tidak</option>
+      <option>Ya</option>
+      <option>Tidak</option>
     </select>
 
-    <label>Ventilasi cukup (5-10% dari luas ruangan) :</label>
+    <label>Ventilasi:</label>
     <select name="ventilasi" required>
       <option value="">-- Pilih --</option>
-      <option value="Ya">Ya</option>
-      <option value="Tidak">Tidak</option>
+      <option>Ya</option>
+      <option>Tidak</option>
     </select>
 
-<label>Ada yg gangguan jiwa :</label>
+    <label>Gangguan Jiwa:</label>
     <select name="gjiwa" required>
       <option value="">-- Pilih --</option>
-      <option value="Ya">Ya</option>
-      <option value="Tidak">Tidak</option>
+      <option>Ya</option>
+      <option>Tidak</option>
     </select>
 
-    <label>Ada yang TBC:</label>
+    <label>TBC:</label>
     <select name="tbc" required>
       <option value="">-- Pilih --</option>
-      <option value="Ya">Ya</option>
-      <option value="Tidak">Tidak</option>
+      <option>Ya</option>
+      <option>Tidak</option>
     </select>
 
-<label>Ada yg Hipertensi :</label>
+    <label>Hipertensi:</label>
     <select name="hipertensi" required>
       <option value="">-- Pilih --</option>
-      <option value="Ya">Ya</option>
-      <option value="Tidak">Tidak</option>
+      <option>Ya</option>
+      <option>Tidak</option>
     </select>
 
-<label>Ada yg Diabetes Mellitus :</label>
+    <label>Diabetes:</label>
     <select name="diabetes" required>
       <option value="">-- Pilih --</option>
-      <option value="Ya">Ya</option>
-      <option value="Tidak">Tidak</option>
-    </select>
-
-  </div>
-
-<div class="card">
-    <h3>Ibu Hamil (kosongi bila tidak ada bumil)</h3>
-
-    <label>Nama :</label>
-    <input type="text" name="nama_bumil">
-
-    <label>Usia Kehamilan :</label>
-    <input type="text" name="usia_bumil">
-
-<label>LILA :</label>
-    <input type="text" name="lila">
-
-<label>Punya Buku KIA :</label>
-    <select name="kia_bumil">
-      <option value="">-- Pilih --</option>
-      <option value="Ada">Ada</option>
-      <option value="Tidak">Tidak</option>
-    </select>
-
-    <label>Minum TTD 24 jam terakhir :</label>
-    <select name="ttd">
-      <option value="">-- Pilih --</option>
-      <option value="Ya">Ya</option>
-      <option value="Tidak">Tidak</option>
-    </select>
-
-<label>Ada tanda bahaya? :</label>
-    <select name="tandabahaya">
-      <option value="">-- Pilih --</option>
-      <option value="Ya">Ya</option>
-      <option value="Tidak">Tidak</option>
+      <option>Ya</option>
+      <option>Tidak</option>
     </select>
   </div>
 
-<div class="card">
-    <h3>Ibu Bersalin dan Nifas (kosongi bila tidak ada bufas)</h3>
-
-    <label>Nama :</label>
-    <input type="text" name="nama_bufasl">
-
-<label>Punya Buku KIA :</label>
-    <select name="kia_bufas">
-      <option value="">-- Pilih --</option>
-      <option value="Ada">Ada</option>
-      <option value="Tidak">Tidak</option>
-    </select>
-    
-<label>Persalinan Normal :</label>
-    <select name="salin_normal">
-      <option value="">-- Pilih --</option>
-      <option value="Ya">Ya</option>
-      <option value="Tidak">Tidak</option>
-    </select>
-
-<label>Inisiasi Menyusu Dini :</label>
-    <select name="imd">
-      <option value="">-- Pilih --</option>
-      <option value="Ya">Ya</option>
-      <option value="Tidak">Tidak</option>
-    </select>
-
-<label>Punya kapsul Vit. A :</label>
-    <select name="vit_A">
-      <option value="">-- Pilih --</option>
-      <option value="Ya">Ya</option>
-      <option value="Tidak">Tidak</option>
-    </select>
-
-<label>Menyusui :</label>
-    <select name="menyusui">
-      <option value="">-- Pilih --</option>
-      <option value="Ya">Ya</option>
-      <option value="Tidak">Tidak</option>
-    </select>
-
-    <label>KB Pasca Persalinan :</label>
-    <select name="kbpasca">
-      <option value="">-- Pilih --</option>
-      <option value="Ya">Ya</option>
-      <option value="Tidak">Tidak</option>
-    </select>
-  </div>
-
-    <div class="card">
-    <h3> Bayi 0-6 bulan (kosongi bila tidak ada bayi 0-6 bulan) (Y/T)</h3>
-    <div id="bayiContainer"></div>
-    <button type="button" class="add-btn" onclick="addBayi()">+ Tambah Bayi</button>
-  </div>
-
-    <div class="card">
-    <h3>Balita & Prasekolah (> 6 bulan s.d. 6 tahun kurang 1 hari) -  kosongi bila tidak ada balita & prasekolah</h3>
-    <div id="praContainer"></div>
-    <button type="button" class="add-btn" onclick="addPra()">+ Tambah Balita</button>
-  </div>
-
-<div class="card">
-    <h3>Anak & Remaja (6 - 18 th) -  kosongi bila tidak ada anak & remaja</h3>
-    <div id="remajaContainer"></div>
-    <button type="button" class="add-btn" onclick="addRemaja()">+ Tambah Remaja</button>
-  </div>
-
-<div class="card">
-    <h3>Usia Produktif (19 - 59 th)-  kosongi bila tidak ada usia produktif</h3>
-    <div id="produktifContainer"></div>
-    <button type="button" class="add-btn" onclick="addProduktif()">+ Tambah Produktif</button>
-  </div>
-
-<div class="card">
-    <h3>Lansia (60 tahun ke atas)-  kosongi bila tidak ada lansia</h3>
-    <div id="lansiaContainer"></div>
-    <button type="button" class="add-btn" onclick="addLansia()">+ Tambah Lansia</button>
+  <div class="card">
+    <h3>Anggota Keluarga (Bisa Tambah Baris)</h3>
+    <div id="anggotaContainer"></div>
+    <button type="button" class="add-btn" onclick="addAnggota()">+ Tambah Anggota</button>
   </div>
 
   <button type="submit">Kirim</button>
@@ -248,152 +101,40 @@
 <p id="response"></p>
 
 <script>
-const scriptURL = 'https://script.google.com/macros/s/AKfycbyGWpBL06VEX1dS7IzvhPiT7_5hfnlkGZ5MmzBWxKhBYBiWGHBMnOZR3EN2xmm0RVHK/exec';
-const form = document.getElementById('dataForm');
-const responseMsg = document.getElementById('response');
-const bayiContainer = document.getElementById('bayiContainer');
-const praContainer = document.getElementById('praContainer');
-const remajaContainer = document.getElementById('remajaContainer');
-const produktifContainer = document.getElementById('produktifContainer');
-const lansiaContainer = document.getElementById('lansiaContainer');
+const scriptURL = "https://script.google.com/macros/s/AKfycbwrMpyBKZaxOy0QVPAKZwLvMUeANqB8E6Th4-88WtSHIIp7qHzjqdHG9l0drzcsX8o/exec";
+const form = document.getElementById("dataForm");
+const responseMsg = document.getElementById("response");
+const anggotaContainer = document.getElementById("anggotaContainer");
 
-function addBayi() {
-  const div = document.createElement('div');
-  div.className = 'item-row';
+function addAnggota() {
+  const div = document.createElement("div");
+  div.className = "item-row";
   div.innerHTML = `
-    <input type="text" name="bayi[]" placeholder="Nama Bayi">
-    <input type="text" name="buku_KIA[]" placeholder="Punya buku KIA">
-    <input type="text" name="asi_x[]" placeholder="Asi Eksklusif">
-    <input type="text" name="imun_bayi[]" placeholder="Imunisasi Lengkap">
-    <input type="text" name="timbang[]" placeholder="Timbang BB & Ukur TB tiap bulan">
-    <input type="text" name="bahaya[]" placeholder="Ada tanda bahaya?">
-
+    <input type="text" name="bayi[]" placeholder="Bayi">
+    <input type="text" name="pra[]" placeholder="Balita">
+    <input type="text" name="remaja[]" placeholder="Remaja">
+    <input type="text" name="produktif[]" placeholder="Produktif">
+    <input type="text" name="lansia[]" placeholder="Lansia">
   `;
-  bayiContainer.appendChild(div);
+  anggotaContainer.appendChild(div);
 }
 
-addBayi(); // default 1 baris
+addAnggota();
 
-function addPra() {
-  const div = document.createElement('div');
-  div.className = 'item-row';
-  div.innerHTML = `
-    <input type="text" name="pra[]" placeholder="Nama">
-    <input type="date" name="tgl_lahir1[]" placeholder="Tanggal Lahir">
-    <input type="text" name="pra_KIA[]" placeholder="Punya buku KIA">
-    <input type="text" name="imun_pra[]" placeholder="Imunisasi Lengkap">
-    <input type="text" name="timbang_pra[]" placeholder="Timbang BB & Ukur TB tiap bulan">
-    <input type="text" name="mpasi[]" placeholder="MP-ASI kaya protein hewani">
-    <input type="text" name="obatcacing[]" placeholder="Dapat obat cacing?">
-    <input type="text" name="vit_A[]" placeholder="Dapat Vit. A?">
-
-  `;
-  praContainer.appendChild(div);
-}
-
-addPra(); // default 1 baris
-
-function addRemaja() {
-  const div = document.createElement('div');
-  div.className = 'item-row';
-  div.innerHTML = `
-    <input type="text" name="remaja[]" placeholder="Nama">
-    <input type="date" name="tgl_lahir2[]" placeholder="Tanggal Lahir">
-    <input type="text" name="pernah1[]" placeholder="Pernah timbang & ukur TB 3 bulan terakhir">
-    <input type="text" name="pernah2[]" placeholder="Pernah cek tensi 1 tahun terakhir (untuk remaja 15 th ke atas)">
-    <input type="text" name="pernah3[]" placeholder="Pernah skrining Hb 1 tahun terakhir (untuk remaja putri)">
-    <input type="text" name="ttdputri[]" placeholder="Minum TTD dalam 7 hari terakhir (untuk remaja putri)">
-    <input type="text" name="rokok[]" placeholder="Merokok">
-    <input type="text" name="gejalaT[]" placeholder="Gejala TBC">
-
-  `;
-  remajaContainer.appendChild(div);
-}
-
-addRemaja(); // default 1 baris
-
-function addProduktif() {
-  const div = document.createElement('div');
-  div.className = 'item-row';
-  div.innerHTML = `
-    <input type="text" name="produktif[]" placeholder="Nama">
-    <input type="date" name="tgl_lahir3[]" placeholder="Tanggal Lahir">
-    <input type="text" name="riwayat[]" placeholder="Riwayat Penyakit (Hipertensi, DM, Stroke, Jantung, Asma, Kanker, Kolesterol)">
-    <input type="text" name="obatH[]" placeholder="Bila Hipertensi, minum obat teratur">
-    <input type="text" name="kbmenikah[]" placeholder="Pakai KB (bila sudah menikah)">
-    <input type="text" name="rokok2[]" placeholder="Merokok">
-    <input type="text" name="gejalaT2[]" placeholder="Gejala TBC">
-
-  `;
-  produktifContainer.appendChild(div);
-}
-
-addProduktif(); // default 1 baris
-
-function addLansia() {
-  const div = document.createElement('div');
-  div.className = 'item-row';
-  div.innerHTML = `
-    <input type="text" name="lansia[]" placeholder="Nama">
-    <input type="date" name="tgl_lahir4[]" placeholder="Tanggal Lahir">
-    <input type="text" name="riwayat2[]" placeholder="Riwayat Penyakit (Hipertensi, DM, Stroke, Jantung, Asma, Kanker, Kolesterol)">
-    <input type="text" name="kesulitan[]" placeholder="Ada kesulitan dalam aktivitas gerak sehari-hari">
-    <input type="text" name="rokok3[]" placeholder="Merokok">
-    <input type="text" name="gejalaT3[]" placeholder="Gejala TBC">
-
-  `;
-  lansiaContainer.appendChild(div);
-}
-
-addLansia(); // default 1 baris
-
-var submitted = false;
-
-document.querySelector("form").addEventListener("submit", function() {
-  document.getElementById("response").innerText = "Mengirim...";
+form.addEventListener("submit", function() {
+  responseMsg.innerText = "Mengirim...";
 });
 
-window.addEventListener("load", function() {
-  var iframe = document.querySelector("iframe");
-
-  iframe.addEventListener("load", function() {
-    if (submitted) {
-      document.getElementById("response").innerText = "Data berhasil dikirim!";
-      document.querySelector("form").reset();
-      submitted = false;
-    }
-  });
+document.querySelector("iframe").addEventListener("load", function() {
+  responseMsg.innerText = "Data berhasil dikirim!";
+  form.reset();
+  anggotaContainer.innerHTML = "";
+  addAnggota();
 });
 
-  // Hapus semua baris barang
-  bayiContainer.innerHTML = "";
-  praContainer.innerHTML = "";
-  remajaContainer.innerHTML = "";
-  produktifContainer.innerHTML = "";
-  lansiaContainer.innerHTML = "";
-
-  // Tambahkan kembali 1 baris kosong
-  addBayi();
-  addPra();
-  addRemaja();
-  addProduktif();
-  addLansia();
-
-
-
-
-})
-.catch(err => {
-  console.error(err);
-  document.getElementById("response").innerText = "Terjadi kesalahan!";
-});
-});
-
-  function loadSheets(data) {
-  const select = document.querySelector("select[name='sheetName']");
-  const responseMsg = document.getElementById("response");
-
-  select.innerHTML = "<option value=''>-- Pilih --</option>";
+function loadSheets(data) {
+  const select = document.getElementById("sheetSelect");
+  select.innerHTML = "<option value=''>-- Pilih Sheet --</option>";
 
   data.forEach(name => {
     const option = document.createElement("option");
@@ -401,8 +142,6 @@ window.addEventListener("load", function() {
     option.textContent = name;
     select.appendChild(option);
   });
-
-  responseMsg.innerText = "";
 }
 
 function requestSheets() {
@@ -416,16 +155,3 @@ window.onload = requestSheets;
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
