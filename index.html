@@ -346,13 +346,12 @@ form.addEventListener('submit', e => {
   responseMsg.innerHTML = "Mengirim...";
 
   fetch(scriptURL, {
-  method: 'POST',
+  method: "POST",
   body: new FormData(form)
 })
 .then(res => res.text())
 .then(data => {
-  responseMsg.innerHTML = data;
-  // Reset semua input
+  document.getElementById("response").innerText = "Data berhasil dikirim!";
   form.reset();
 
   // Hapus semua baris barang
@@ -374,8 +373,8 @@ form.addEventListener('submit', e => {
 
 })
 .catch(err => {
-  responseMsg.innerHTML = "ERROR: " + err;
   console.error(err);
+  document.getElementById("response").innerText = "Terjadi kesalahan!";
 });
 });
 
@@ -404,6 +403,7 @@ fetch(scriptURL + "?action=getSheets")
 
 </body>
 </html>
+
 
 
 
