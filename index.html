@@ -69,7 +69,7 @@
     <label>Nama Kepala Keluarga :</label>
     <input type="text" name="kk" required>
 
-    <label>NIK :</label>
+    <label>NIK : (tambahkan karakter ' sebelum mengetikkan angka NIK)</label>
     <input type="text" name="nik" required>
 
     <label>Alamat (minimal RT/RW) :</label>
@@ -77,7 +77,7 @@
   </div>
 
   <div class="card">
-    <h3>Kondisi Umum</h3>
+    <h3>Kondisi Umum (Y/T)</h3>
 
     <label>Memiliki Jamban Sehat :</label>
     <select name="jamban" required>
@@ -124,7 +124,7 @@
   </div>
 
 <div class="card">
-    <h3>Ibu Hamil (kosongi bila tidak ada bumil)</h3>
+    <h3>Ibu Hamil (kosongi bila tidak ada bumil) (Y/T)</h3>
 
     <label>Nama :</label>
     <input type="text" name="nama_bumil">
@@ -213,25 +213,25 @@
   </div>
 
     <div class="card">
-    <h3>Balita & Prasekolah (> 6 bulan s.d. 6 tahun kurang 1 hari) -  kosongi bila tidak ada balita & prasekolah</h3>
+    <h3>Balita & Prasekolah (> 6 bulan s.d. 6 tahun kurang 1 hari) -  kosongi bila tidak ada balita & prasekolah (Y/T)</h3>
     <div id="praContainer"></div>
     <button type="button" class="add-btn" onclick="addPra()">+ Tambah Balita</button>
   </div>
 
 <div class="card">
-    <h3>Anak & Remaja (6 - 18 th) -  kosongi bila tidak ada anak & remaja</h3>
+    <h3>Anak & Remaja (6 - 18 th) -  kosongi bila tidak ada anak & remaja (Y/T)</h3>
     <div id="remajaContainer"></div>
     <button type="button" class="add-btn" onclick="addRemaja()">+ Tambah Remaja</button>
   </div>
 
 <div class="card">
-    <h3>Usia Produktif (19 - 59 th)-  kosongi bila tidak ada usia produktif</h3>
+    <h3>Usia Produktif (19 - 59 th)-  kosongi bila tidak ada usia produktif (Y/T)</h3>
     <div id="produktifContainer"></div>
     <button type="button" class="add-btn" onclick="addProduktif()">+ Tambah Produktif</button>
   </div>
 
 <div class="card">
-    <h3>Lansia (60 tahun ke atas)-  kosongi bila tidak ada lansia</h3>
+    <h3>Lansia (60 tahun ke atas)-  kosongi bila tidak ada lansia (Y/T)</h3>
     <div id="lansiaContainer"></div>
     <button type="button" class="add-btn" onclick="addLansia()">+ Tambah Lansia</button>
   </div>
@@ -403,6 +403,7 @@ fetch(scriptURL + "?action=getSheets")
 
 </body>
 </html>
+
 
 
 
