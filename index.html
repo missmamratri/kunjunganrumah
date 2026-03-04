@@ -54,7 +54,13 @@
 
 <h2>Form Input Data</h2>
 
-<form id="dataForm">
+<form id="dataForm"
+  action="https://script.google.com/macros/s/AKfycbx2ba-46IYf8weOlqdCkqimhBXPsObD4d1HIMm9mjNUA7VJhZzR9sg6tGOu_FpkzozB/exec" 
+  method="POST"
+  target="hidden_iframe"
+  onsubmit="submitted=true;"
+>
+  <iframe name="hidden_iframe" style="display:none;"></iframe>
 
   <div class="card">
     <label>Pilih Sheet:</label><br>
@@ -341,18 +347,23 @@ function addLansia() {
 
 addLansia(); // default 1 baris
 
-form.addEventListener('submit', e => {
-  e.preventDefault();
-  responseMsg.innerHTML = "Mengirim...";
+var submitted = false;
 
-  fetch(scriptURL, {
-  method: "POST",
-  body: new FormData(form)
-})
-.then(res => res.text())
-.then(data => {
-  document.getElementById("response").innerText = "Data berhasil dikirim!";
-  form.reset();
+document.querySelector("form").addEventListener("submit", function() {
+  document.getElementById("response").innerText = "Mengirim...";
+});
+
+window.addEventListener("load", function() {
+  var iframe = document.querySelector("iframe");
+
+  iframe.addEventListener("load", function() {
+    if (submitted) {
+      document.getElementById("response").innerText = "Data berhasil dikirim!";
+      document.querySelector("form").reset();
+      submitted = false;
+    }
+  });
+});
 
   // Hapus semua baris barang
   bayiContainer.innerHTML = "";
@@ -405,6 +416,7 @@ window.onload = requestSheets;
 
 </body>
 </html>
+
 
 
 
