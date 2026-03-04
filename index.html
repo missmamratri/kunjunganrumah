@@ -137,10 +137,10 @@ function loadSheets(data) {
   select.innerHTML = "<option value=''>-- Pilih Sheet --</option>";
 
   data.forEach(name => {
-    const option = document.createElement("option");
-    option.value = name;
-    option.textContent = name;
-    select.appendChild(option);
+    const opt = document.createElement("option");
+    opt.value = name;
+    opt.textContent = name;
+    select.appendChild(opt);
   });
 }
 
@@ -155,3 +155,4 @@ window.onload = requestSheets;
 
 </body>
 </html>
+
