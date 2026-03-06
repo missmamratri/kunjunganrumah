@@ -429,63 +429,122 @@ alert("Masukkan NIK dulu");
 return;
 }
 
-if(!sheet){
-alert("Pilih sheet dulu");
-return;
-}
-
 fetch(scriptURL + "?action=findNik&sheetName=" + sheet + "&nik=" + nik)
 
-.then(res=>res.json())
+.then(res => res.json())
 
-.then(data=>{
+.then(data => {
 
 if(!data){
-
 alert("Data tidak ditemukan");
 return;
-
 }
 
-const d = data.data;
+const rows = data.data;
 
-// format tanggal
-if(d[1]){
+const main = rows[0];
 
-let tgl = new Date(d[1]);
-
+if(main[1]){
+let tgl = new Date(main[1]);
 let format =
-tgl.getFullYear()+"-"+
-String(tgl.getMonth()+1).padStart(2,"0")+"-"+
+tgl.getFullYear() + "-" +
+String(tgl.getMonth()+1).padStart(2,"0") + "-" +
 String(tgl.getDate()).padStart(2,"0");
 
 document.querySelector('[name="tanggal"]').value = format;
-
 }
 
-document.querySelector('[name="kk"]').value = d[2];
-document.querySelector('[name="nik"]').value = d[3];
-document.querySelector('[name="alamt"]').value = d[4];
+document.querySelector('[name="kk"]').value = main[2];
+document.querySelector('[name="nik"]').value = main[3];
+document.querySelector('[name="alamt"]').value = main[4];
 
-document.querySelector('[name="jamban"]').value = d[5];
-document.querySelector('[name="ventilasi"]').value = d[6];
-document.querySelector('[name="gjiwa"]').value = d[7];
-document.querySelector('[name="tbc"]').value = d[8];
-document.querySelector('[name="hipertensi"]').value = d[9];
-document.querySelector('[name="diabetes"]').value = d[10];
+document.querySelector('[name="jamban"]').value = main[5];
+document.querySelector('[name="ventilasi"]').value = main[6];
+document.querySelector('[name="gjiwa"]').value = main[7];
+document.querySelector('[name="tbc"]').value = main[8];
+document.querySelector('[name="hipertensi"]').value = main[9];
+document.querySelector('[name="diabetes"]').value = main[10];
+
+bayiContainer.innerHTML="";
+praContainer.innerHTML="";
+remajaContainer.innerHTML="";
+produktifContainer.innerHTML="";
+lansiaContainer.innerHTML="";
+
+rows.forEach(r=>{
+
+if(r[24]){
+addBayi();
+let inputs = bayiContainer.lastChild.querySelectorAll("input");
+inputs[0].value=r[24];
+inputs[1].value=r[25];
+inputs[2].value=r[26];
+inputs[3].value=r[27];
+inputs[4].value=r[28];
+inputs[5].value=r[29];
+}
+
+if(r[30]){
+addPra();
+let inputs = praContainer.lastChild.querySelectorAll("input");
+inputs[0].value=r[30];
+inputs[1].value=r[31];
+inputs[2].value=r[32];
+inputs[3].value=r[33];
+inputs[4].value=r[34];
+inputs[5].value=r[35];
+inputs[6].value=r[36];
+inputs[7].value=r[37];
+}
+
+if(r[38]){
+addRemaja();
+let inputs = remajaContainer.lastChild.querySelectorAll("input");
+inputs[0].value=r[38];
+inputs[1].value=r[39];
+inputs[2].value=r[40];
+inputs[3].value=r[41];
+inputs[4].value=r[42];
+inputs[5].value=r[43];
+inputs[6].value=r[44];
+inputs[7].value=r[45];
+}
+
+if(r[46]){
+addProduktif();
+let inputs = produktifContainer.lastChild.querySelectorAll("input");
+inputs[0].value=r[46];
+inputs[1].value=r[47];
+inputs[2].value=r[48];
+inputs[3].value=r[49];
+inputs[4].value=r[50];
+inputs[5].value=r[51];
+inputs[6].value=r[52];
+}
+
+if(r[53]){
+addLansia();
+let inputs = lansiaContainer.lastChild.querySelectorAll("input");
+inputs[0].value=r[53];
+inputs[1].value=r[54];
+inputs[2].value=r[55];
+inputs[3].value=r[56];
+inputs[4].value=r[57];
+inputs[5].value=r[58];
+}
+
+});
 
 document.getElementById("mode").value="edit";
 document.getElementById("editRow").value=data.row;
 
-alert("Data ditemukan. Silakan edit");
+alert("Data ditemukan, silakan edit");
 
 })
 
 .catch(err=>{
-
 console.log(err);
 alert("Gagal mengambil data");
-
 });
 
 }
@@ -495,6 +554,7 @@ alert("Gagal mengambil data");
 
 </body>
 </html>
+
 
 
 
