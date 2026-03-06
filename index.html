@@ -63,6 +63,14 @@
     </select>
     <br><br>
 
+    <label>Cari Data Berdasarkan NIK :</label>
+    <input type="text" id="cariNik">
+
+    <button type="button" onclick="cariData()">Cari Data</button>
+
+    <input type="hidden" name="mode" id="mode">
+    <input type="hidden" name="editRow" id="editRow">
+    
     <label>Tanggal Kunjungan Rumah :</label>
     <input type="date" name="tanggal" required>
     
@@ -399,10 +407,53 @@ fetch(scriptURL + "?action=getSheets")
     sheetSelect.innerHTML = '<option value="">Gagal memuat sheet</option>';
     console.error(err);
   });
+  function cariData(){
+
+const nik = document.getElementById("cariNik").value;
+const sheet = sheetSelect.value;
+
+if(!nik || !sheet){
+alert("Isi NIK dan pilih sheet dulu");
+return;
+}
+
+fetch(scriptURL+"?action=findNik&sheetName="+sheet+"&nik="+nik)
+
+.then(res=>res.json())
+.then(data=>{
+
+if(!data){
+alert("Data tidak ditemukan");
+return;
+}
+
+const d = data.data;
+
+document.querySelector('[name="tanggal"]').value = d[1];
+document.querySelector('[name="kk"]').value = d[2];
+document.querySelector('[name="nik"]').value = d[3];
+document.querySelector('[name="alamt"]').value = d[4];
+
+document.querySelector('[name="jamban"]').value = d[5];
+document.querySelector('[name="ventilasi"]').value = d[6];
+document.querySelector('[name="gjiwa"]').value = d[7];
+document.querySelector('[name="tbc"]').value = d[8];
+document.querySelector('[name="hipertensi"]').value = d[9];
+document.querySelector('[name="diabetes"]').value = d[10];
+
+document.getElementById("mode").value="edit";
+document.getElementById("editRow").value=data.row;
+
+alert("Data ditemukan, silakan edit");
+
+});
+
+}
 </script>
 
 </body>
 </html>
+
 
 
 
