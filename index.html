@@ -456,18 +456,16 @@ document.querySelector('[name="tbc"]').value = d[8];
 document.querySelector('[name="hipertensi"]').value = d[9];
 document.querySelector('[name="diabetes"]').value = d[10];
 
-document.getElementById("mode").value = "edit";
-document.getElementById("editRow").value = data.row;
+document.getElementById("mode").value="edit";
+document.getElementById("editRow").value=data.row;
 
 alert("Data ditemukan, silakan edit");
 
 })
 
-.catch(err => {
-
+.catch(err=>{
 console.log(err);
 alert("Gagal mengambil data");
-
 });
 
 }
@@ -477,6 +475,7 @@ alert("Gagal mengambil data");
 
 </body>
 </html>
+
 
 
 
