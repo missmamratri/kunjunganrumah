@@ -431,7 +431,7 @@ alert("Pilih sheet dulu");
 return;
 }
 
-console.log(scriptURL + "?action=findNik&sheetName=" + sheet + "&nik=" + nik)
+fetch(scriptURL + "?action=findNik&sheetName=" + sheet + "&nik=" + nik)
 
 .then(res => res.json())
 
@@ -477,6 +477,7 @@ alert("Gagal mengambil data");
 
 </body>
 </html>
+
 
 
 
