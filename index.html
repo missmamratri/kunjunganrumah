@@ -441,7 +441,6 @@ return;
 }
 
 const rows = data.data;
-
 const main = rows[0];
 
 if(main[1]){
@@ -454,16 +453,16 @@ String(tgl.getDate()).padStart(2,"0");
 document.querySelector('[name="tanggal"]').value = format;
 }
 
-document.querySelector('[name="kk"]').value = main[2];
-document.querySelector('[name="nik"]').value = main[3];
-document.querySelector('[name="alamt"]').value = main[4];
+document.querySelector('[name="kk"]').value = main[2] || "";
+document.querySelector('[name="nik"]').value = main[3] || "";
+document.querySelector('[name="alamt"]').value = main[4] || "";
 
-document.querySelector('[name="jamban"]').value = main[5];
-document.querySelector('[name="ventilasi"]').value = main[6];
-document.querySelector('[name="gjiwa"]').value = main[7];
-document.querySelector('[name="tbc"]').value = main[8];
-document.querySelector('[name="hipertensi"]').value = main[9];
-document.querySelector('[name="diabetes"]').value = main[10];
+document.querySelector('[name="jamban"]').value = main[5] || "";
+document.querySelector('[name="ventilasi"]').value = main[6] || "";
+document.querySelector('[name="gjiwa"]').value = main[7] || "";
+document.querySelector('[name="tbc"]').value = main[8] || "";
+document.querySelector('[name="hipertensi"]').value = main[9] || "";
+document.querySelector('[name="diabetes"]').value = main[10] || "";
 
 bayiContainer.innerHTML="";
 praContainer.innerHTML="";
@@ -554,6 +553,7 @@ alert("Gagal mengambil data");
 
 </body>
 </html>
+
 
 
 
