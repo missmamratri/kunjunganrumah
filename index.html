@@ -250,6 +250,7 @@
 
 <p id="response"></p>
 
+  
 <script>
 const scriptURL = 'https://script.google.com/macros/s/AKfycbwsFqI1vn9oXrpVLuoyfsbOtpO79L7zziB1K5NAoEHT-qih-u7xnC9vfQ-F_RM0rrwRnA/exec';
 const form = document.getElementById('dataForm');
@@ -444,7 +445,15 @@ return;
 
 const d = data.data;
 
-document.querySelector('[name="tanggal"]').value = d[1];
+if(d[1]){
+  let tgl = new Date(d[1]);
+  let format =
+    tgl.getFullYear() + "-" +
+    String(tgl.getMonth()+1).padStart(2,"0") + "-" +
+    String(tgl.getDate()).padStart(2,"0");
+
+  document.querySelector('[name="tanggal"]').value = format;
+}
 document.querySelector('[name="kk"]').value = d[2];
 document.querySelector('[name="nik"]').value = d[3];
 document.querySelector('[name="alamt"]').value = d[4];
@@ -475,6 +484,7 @@ alert("Gagal mengambil data");
 
 </body>
 </html>
+
 
 
 
