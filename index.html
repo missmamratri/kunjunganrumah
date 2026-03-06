@@ -390,24 +390,32 @@ form.addEventListener('submit', e => {
 
   const sheetSelect = document.getElementById("sheetSelect");
 
-fetch(scriptURL + "?action=getSheets")
-  .then(res => res.json())
-  .then(data => {
+fetch(scriptURL + "?action=getSheets&t=" + new Date().getTime())
 
-    sheetSelect.innerHTML = '<option value="">-- Pilih Sheet --</option>';
+.then(res => res.json())
 
-    data.forEach(name => {
-      const option = document.createElement("option");
-      option.value = name;
-      option.textContent = name;
-      sheetSelect.appendChild(option);
-    });
+.then(data => {
 
-  })
-  .catch(err => {
-    sheetSelect.innerHTML = '<option value="">Gagal memuat sheet</option>';
-    console.error(err);
+  sheetSelect.innerHTML = '<option value="">-- Pilih Sheet --</option>';
+
+  data.forEach(name => {
+
+    const option = document.createElement("option");
+    option.value = name;
+    option.textContent = name;
+
+    sheetSelect.appendChild(option);
+
   });
+
+})
+
+.catch(err => {
+
+  sheetSelect.innerHTML = '<option value="">Gagal memuat sheet</option>';
+  console.error(err);
+
+});
   function cariData(){
 
 const nik = document.getElementById("cariNik").value;
@@ -469,6 +477,7 @@ alert("Gagal mengambil data");
 
 </body>
 </html>
+
 
 
 
