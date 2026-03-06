@@ -413,15 +413,21 @@ fetch(scriptURL + "?action=getSheets")
 const nik = document.getElementById("cariNik").value;
 const sheet = sheetSelect.value;
 
-if(!nik || !sheet){
-alert("Isi NIK dan pilih sheet dulu");
+if(!nik){
+alert("Masukkan NIK dulu");
 return;
 }
 
-fetch(scriptURL+"?action=findNik&sheetName="+sheet+"&nik="+nik)
+if(!sheet){
+alert("Pilih sheet dulu");
+return;
+}
 
-.then(res=>res.json())
-.then(data=>{
+fetch(scriptURL + "?action=findNik&sheetName=" + sheet + "&nik=" + nik)
+
+.then(res => res.json())
+
+.then(data => {
 
 if(!data){
 alert("Data tidak ditemukan");
@@ -442,18 +448,28 @@ document.querySelector('[name="tbc"]').value = d[8];
 document.querySelector('[name="hipertensi"]').value = d[9];
 document.querySelector('[name="diabetes"]').value = d[10];
 
-document.getElementById("mode").value="edit";
-document.getElementById("editRow").value=data.row;
+document.getElementById("mode").value = "edit";
+document.getElementById("editRow").value = data.row;
 
 alert("Data ditemukan, silakan edit");
 
+})
+
+.catch(err => {
+
+console.log(err);
+alert("Gagal mengambil data");
+
 });
+
+}
 
 }
 </script>
 
 </body>
 </html>
+
 
 
 
