@@ -419,7 +419,7 @@ fetch(scriptURL + "?action=getSheets&t=" + new Date().getTime())
 });
   function cariData(){
 
-const nik = document.getElementById("cariNik").value;
+const nik = document.getElementById("cariNik").value.trim();
 const sheet = sheetSelect.value;
 
 if(!nik){
@@ -432,7 +432,7 @@ alert("Pilih sheet dulu");
 return;
 }
 
-fetch(scriptURL + "?action=findNik&sheetName=" + sheet + "&nik=" + nik)
+fetch(scriptURL + "?action=findNik&sheetName=" + encodeURIComponent(sheet) + "&nik=" + encodeURIComponent(nik))
 
 .then(res => res.json())
 
@@ -445,28 +445,30 @@ return;
 
 const d = data.data;
 
+// format tanggal
 if(d[1]){
-  let tgl = new Date(d[1]);
-  let format =
-    tgl.getFullYear() + "-" +
-    String(tgl.getMonth()+1).padStart(2,"0") + "-" +
-    String(tgl.getDate()).padStart(2,"0");
+let tgl = new Date(d[1]);
+let format =
+tgl.getFullYear() + "-" +
+String(tgl.getMonth()+1).padStart(2,"0") + "-" +
+String(tgl.getDate()).padStart(2,"0");
 
-  document.querySelector('[name="tanggal"]').value = format;
+document.querySelector('[name="tanggal"]').value = format;
 }
-document.querySelector('[name="kk"]').value = d[2];
-document.querySelector('[name="nik"]').value = d[3];
-document.querySelector('[name="alamt"]').value = d[4];
 
-document.querySelector('[name="jamban"]').value = d[5];
-document.querySelector('[name="ventilasi"]').value = d[6];
-document.querySelector('[name="gjiwa"]').value = d[7];
-document.querySelector('[name="tbc"]').value = d[8];
-document.querySelector('[name="hipertensi"]').value = d[9];
-document.querySelector('[name="diabetes"]').value = d[10];
+document.querySelector('[name="kk"]').value = d[2] || "";
+document.querySelector('[name="nik"]').value = d[3] || "";
+document.querySelector('[name="alamt"]').value = d[4] || "";
 
-document.getElementById("mode").value="edit";
-document.getElementById("editRow").value=data.row;
+document.querySelector('[name="jamban"]').value = d[5] || "";
+document.querySelector('[name="ventilasi"]').value = d[6] || "";
+document.querySelector('[name="gjiwa"]').value = d[7] || "";
+document.querySelector('[name="tbc"]').value = d[8] || "";
+document.querySelector('[name="hipertensi"]').value = d[9] || "";
+document.querySelector('[name="diabetes"]').value = d[10] || "";
+
+document.getElementById("mode").value = "edit";
+document.getElementById("editRow").value = data.row;
 
 alert("Data ditemukan, silakan edit");
 
@@ -484,6 +486,7 @@ alert("Gagal mengambil data");
 
 </body>
 </html>
+
 
 
 
