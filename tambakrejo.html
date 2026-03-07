@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form Rekapitulasi Kunjungan Rumah</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+      padding: 30px;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+    h2 { margin-top: 0; }
+    label { font-weight: bold; }
+    input, select, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: #2e86de;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #1b4f72;
+    }
+    .item-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .item-row input {
+      flex: 1;
+    }
+    .add-btn {
+      background: #27ae60;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Form Rekapitulasi Kunjungan Rumah Desa Tambaksumur</h2>
+
+<form id="dataForm">
+
+  <div class="card">
+    <label>Pilih Sheet:</label><br>
+    <select name="sheetName" id="sheetSelect" required>
+      <option value="">Memuat sheet...</option>
+    </select>
+    <br><br>
+
+    <label>Cari Data yang Sudah Di-Entry Berdasarkan NIK Kepala Keluarga :</label>
+    <input type="text" id="cariNik">
+
+    <button type="button" onclick="cariData()">Cari Data</button>
+
+    <input type="hidden" name="mode" id="mode">
+    <input type="hidden" name="editRow" id="editRow">
+    <br><br>
+    
+    <label>Tanggal Kunjungan Rumah :</label>
+    <input type="date" name="tanggal" required>
+    
+    <label>Nama Kepala Keluarga :</label>
+    <input type="text" name="kk" required>
+
+    <label>NIK : (tambahkan karakter ' sebelum mengetikkan angka NIK)</label>
+    <input type="text" name="nik" required>
+
+    <label>Alamat (minimal RT/RW) :</label>
+    <textarea name="alamt" required></textarea>
+  </div>
+
+  <div class="card">
+    <h3>Kondisi Umum (Y/T)</h3>
+
+    <label>Memiliki Jamban Sehat :</label>
+    <select name="jamban" required>
+      <option value="">-- Pilih --</option>
+      <option value="Ya">Ya</option>
+      <option value="Tidak">Tidak</option>
+    </select>
+
+    <label>Ventilasi cukup (5-10% dari luas ruangan) :</label>
+    <select name="ventilasi" required>
+      <option value="">-- Pilih --</option>
+      <option value="Ya">Ya</option>
+      <option value="Tidak">Tidak</option>
+    </select>
+
+<label>Ada yg gangguan jiwa :</label>
+    <select name="gjiwa" required>
+      <option value="">-- Pilih --</option>
+      <option value="Ya">Ya</option>
+      <option value="Tidak">Tidak</option>
+    </select>
+
+    <label>Ada yang TBC:</label>
+    <select name="tbc" required>
+      <option value="">-- Pilih --</option>
+      <option value="Ya">Ya</option>
+      <option value="Tidak">Tidak</option>
+    </select>
+
+<label>Ada yg Hipertensi :</label>
+    <select name="hipertensi" required>
+      <option value="">-- Pilih --</option>
+      <option value="Ya">Ya</option>
+      <option value="Tidak">Tidak</option>
+    </select>
+
+<label>Ada yg Diabetes Mellitus :</label>
+    <select name="diabetes" required>
+      <option value="">-- Pilih --</option>
+      <option value="Ya">Ya</option>
+      <option value="Tidak">Tidak</option>
+    </select>
+
+  </div>
+
+<div class="card">
+    <h3>Ibu Hamil (kosongi bila tidak ada bumil) (Y/T)</h3>
+
+    <label>Nama :</label>
+    <input type="text" name="nama_bumil">
+
+    <label>Usia Kehamilan :</label>
+    <input type="text" name="usia_hamil">
+
+<label>LILA :</label>
+    <input type="text" name="lila">
+
+<label>Punya Buku KIA :</label>
+    <select name="kia_bumil">
+      <option value="">-- Pilih --</option>
+      <option value="Ada">Ada</option>
+      <option value="Tidak">Tidak</option>
+    </select>
+
+    <label>Minum TTD 24 jam terakhir :</label>
+    <select name="ttd">
+      <option value="">-- Pilih --</option>
+      <option value="Ya">Ya</option>
+      <option value="Tidak">Tidak</option>
+    </select>
+
+<label>Ada tanda bahaya? :</label>
+    <select name="tandabahaya">
+      <option value="">-- Pilih --</option>
+      <option value="Ya">Ya</option>
+      <option value="Tidak">Tidak</option>
+    </select>
+  </div>
+
+<div class="card">
+    <h3>Ibu Bersalin dan Nifas (kosongi bila tidak ada bufas) (Y/T)</h3>
+
+    <label>Nama :</label>
+    <input type="text" name="nama_bufasl">
+
+<label>Punya Buku KIA :</label>
+    <select name="kia_bufas">
+      <option value="">-- Pilih --</option>
+      <option value="Ada">Ada</option>
+      <option value="Tidak">Tidak</option>
+    </select>
+    
+<label>Persalinan Normal :</label>
+    <select name="salin_normal">
+      <option value="">-- Pilih --</option>
+      <option value="Ya">Ya</option>
+      <option value="Tidak">Tidak</option>
+    </select>
+
+<label>Inisiasi Menyusu Dini :</label>
+    <select name="imd">
+      <option value="">-- Pilih --</option>
+      <option value="Ya">Ya</option>
+      <option value="Tidak">Tidak</option>
+    </select>
+
+<label>Punya kapsul Vit. A :</label>
+    <select name="vit_A">
+      <option value="">-- Pilih --</option>
+      <option value="Ya">Ya</option>
+      <option value="Tidak">Tidak</option>
+    </select>
+
+<label>Menyusui :</label>
+    <select name="menyusui">
+      <option value="">-- Pilih --</option>
+      <option value="Ya">Ya</option>
+      <option value="Tidak">Tidak</option>
+    </select>
+
+    <label>KB Pasca Persalinan :</label>
+    <select name="kbpasca">
+      <option value="">-- Pilih --</option>
+      <option value="Ya">Ya</option>
+      <option value="Tidak">Tidak</option>
+    </select>
+  </div>
+
+    <div class="card">
+    <h3> Bayi 0-6 bulan (kosongi bila tidak ada bayi 0-6 bulan) (Y/T)</h3>
+    <div id="bayiContainer"></div>
+    <button type="button" class="add-btn" onclick="addBayi()">+ Tambah Bayi</button>
+  </div>
+
+    <div class="card">
+    <h3>Balita & Prasekolah (> 6 bulan s.d. 6 tahun kurang 1 hari) -  kosongi bila tidak ada balita & prasekolah (Y/T)</h3>
+    <div id="praContainer"></div>
+    <button type="button" class="add-btn" onclick="addPra()">+ Tambah Balita</button>
+  </div>
+
+<div class="card">
+    <h3>Anak & Remaja (6 - 18 th) -  kosongi bila tidak ada anak & remaja (Y/T)</h3>
+    <div id="remajaContainer"></div>
+    <button type="button" class="add-btn" onclick="addRemaja()">+ Tambah Remaja</button>
+  </div>
+
+<div class="card">
+    <h3>Usia Produktif (19 - 59 th)-  kosongi bila tidak ada usia produktif (Y/T)</h3>
+    <h4>kecuali Riwayat penyakit (Hipertensi, DM, Stroke, Jantung, Asma, Kanker, Kolesterol), sebutkan jenis penyakitnya</h4>
+    <div id="produktifContainer"></div>
+    <button type="button" class="add-btn" onclick="addProduktif()">+ Tambah Produktif</button>
+  </div>
+
+<div class="card">
+    <h3>Lansia (60 tahun ke atas)-  kosongi bila tidak ada lansia (Y/T)</h3>
+    <h4>kecuali Riwayat penyakit (Hipertensi, DM, Stroke, Jantung, Asma, Kanker, Kolesterol), sebutkan jenis penyakitnya</h4>
+    <div id="lansiaContainer"></div>
+    <button type="button" class="add-btn" onclick="addLansia()">+ Tambah Lansia</button>
+  </div>
+
+  <button type="submit">Kirim</button>
+</form>
+
+<p id="response"></p>
+
+  
+<script>
+const scriptURL = 'https://script.google.com/macros/s/AKfycbwJpwyIn9McU4WOeuE1HSLlJV6A96p_xTQleCT5YKW88UM61kqp9OLCzoRlfbENReGJTg/exec';
+const form = document.getElementById('dataForm');
+const responseMsg = document.getElementById('response');
+const bayiContainer = document.getElementById('bayiContainer');
+const praContainer = document.getElementById('praContainer');
+const remajaContainer = document.getElementById('remajaContainer');
+const produktifContainer = document.getElementById('produktifContainer');
+const lansiaContainer = document.getElementById('lansiaContainer');
+
+function addBayi() {
+  const div = document.createElement('div');
+  div.className = 'item-row';
+  div.innerHTML = `
+    <input type="text" name="bayi[]" placeholder="Nama Bayi">
+    <input type="text" name="buku_KIA[]" placeholder="Punya buku KIA">
+    <input type="text" name="asi_x[]" placeholder="Asi Eksklusif">
+    <input type="text" name="imun_bayi[]" placeholder="Imunisasi Lengkap">
+    <input type="text" name="timbang[]" placeholder="Timbang BB & Ukur TB tiap bulan">
+    <input type="text" name="bahaya[]" placeholder="Ada tanda bahaya?">
+
+  `;
+  bayiContainer.appendChild(div);
+}
+
+addBayi(); // default 1 baris
+
+function addPra() {
+  const div = document.createElement('div');
+  div.className = 'item-row';
+  div.innerHTML = `
+    <input type="text" name="pra[]" placeholder="Nama">
+    <input type="date" name="tgl_lahir1[]" placeholder="Tanggal Lahir">
+    <input type="text" name="pra_KIA[]" placeholder="Punya buku KIA">
+    <input type="text" name="imun_pra[]" placeholder="Imunisasi Lengkap">
+    <input type="text" name="timbang_pra[]" placeholder="Timbang BB & Ukur TB tiap bulan">
+    <input type="text" name="mpasi[]" placeholder="MP-ASI kaya protein hewani">
+    <input type="text" name="obatcacing[]" placeholder="Dapat obat cacing?">
+    <input type="text" name="vit_A[]" placeholder="Dapat Vit. A?">
+
+  `;
+  praContainer.appendChild(div);
+}
+
+addPra(); // default 1 baris
+
+function addRemaja() {
+  const div = document.createElement('div');
+  div.className = 'item-row';
+  div.innerHTML = `
+    <input type="text" name="remaja[]" placeholder="Nama">
+    <input type="date" name="tgl_lahir2[]" placeholder="Tanggal Lahir">
+    <input type="text" name="pernah1[]" placeholder="Pernah timbang & ukur TB 3 bulan terakhir">
+    <input type="text" name="pernah2[]" placeholder="Pernah cek tensi 1 tahun terakhir (untuk remaja 15 th ke atas)">
+    <input type="text" name="pernah3[]" placeholder="Pernah skrining Hb 1 tahun terakhir (untuk remaja putri)">
+    <input type="text" name="ttdputri[]" placeholder="Minum TTD dalam 7 hari terakhir (untuk remaja putri)">
+    <input type="text" name="rokok[]" placeholder="Merokok">
+    <input type="text" name="gejalaT[]" placeholder="Gejala TBC">
+
+  `;
+  remajaContainer.appendChild(div);
+}
+
+addRemaja(); // default 1 baris
+
+function addProduktif() {
+  const div = document.createElement('div');
+  div.className = 'item-row';
+  div.innerHTML = `
+    <input type="text" name="produktif[]" placeholder="Nama">
+    <input type="date" name="tgl_lahir3[]" placeholder="Tanggal Lahir">
+    <input type="text" name="riwayat[]" placeholder="Riwayat Penyakit (Hipertensi, DM, Stroke, Jantung, Asma, Kanker, Kolesterol)">
+    <input type="text" name="obatH[]" placeholder="Bila Hipertensi, minum obat teratur">
+    <input type="text" name="kbmenikah[]" placeholder="Pakai KB (bila sudah menikah)">
+    <input type="text" name="rokok2[]" placeholder="Merokok">
+    <input type="text" name="gejalaT2[]" placeholder="Gejala TBC">
+
+  `;
+  produktifContainer.appendChild(div);
+}
+
+addProduktif(); // default 1 baris
+
+function addLansia() {
+  const div = document.createElement('div');
+  div.className = 'item-row';
+  div.innerHTML = `
+    <input type="text" name="lansia[]" placeholder="Nama">
+    <input type="date" name="tgl_lahir4[]" placeholder="Tanggal Lahir">
+    <input type="text" name="riwayat2[]" placeholder="Riwayat Penyakit (Hipertensi, DM, Stroke, Jantung, Asma, Kanker, Kolesterol)">
+    <input type="text" name="kesulitan[]" placeholder="Ada kesulitan dalam aktivitas gerak sehari-hari">
+    <input type="text" name="rokok3[]" placeholder="Merokok">
+    <input type="text" name="gejalaT3[]" placeholder="Gejala TBC">
+
+  `;
+  lansiaContainer.appendChild(div);
+}
+
+addLansia(); // default 1 baris
+
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  responseMsg.innerHTML = "Mengirim...";
+
+  fetch(scriptURL, {
+  method: 'POST',
+  body: new FormData(form)
+})
+.then(res => res.text())
+.then(data => {
+  responseMsg.innerHTML = data;
+  document.getElementById("mode").value = "";
+  document.getElementById("editRow").value = "";
+  // Reset semua input
+  form.reset();
+
+  // Hapus semua baris barang
+  bayiContainer.innerHTML = "";
+  praContainer.innerHTML = "";
+  remajaContainer.innerHTML = "";
+  produktifContainer.innerHTML = "";
+  lansiaContainer.innerHTML = "";
+
+  // Tambahkan kembali 1 baris kosong
+  addBayi();
+  addPra();
+  addRemaja();
+  addProduktif();
+  addLansia();
+
+
+
+
+})
+.catch(err => {
+  responseMsg.innerHTML = "ERROR: " + err;
+  console.error(err);
+});
+});
+
+  const sheetSelect = document.getElementById("sheetSelect");
+
+fetch(scriptURL + "?action=getSheets&t=" + new Date().getTime())
+
+.then(res => res.json())
+
+.then(data => {
+
+  sheetSelect.innerHTML = '<option value="">-- Pilih Sheet --</option>';
+
+  data.forEach(name => {
+
+    const option = document.createElement("option");
+    option.value = name;
+    option.textContent = name;
+
+    sheetSelect.appendChild(option);
+
+  });
+
+})
+
+.catch(err => {
+
+  sheetSelect.innerHTML = '<option value="">Gagal memuat sheet</option>';
+  console.error(err);
+
+});
+  function cariData(){
+
+const nik = document.getElementById("cariNik").value;
+const sheet = sheetSelect.value;
+
+if(!nik){
+alert("Masukkan NIK dulu");
+return;
+}
+
+fetch(scriptURL + "?action=findNik&sheetName=" + sheet + "&nik=" + nik)
+
+.then(res => res.json())
+
+.then(data => {
+
+if(!data){
+alert("Data tidak ditemukan");
+return;
+}
+
+const rows = data.data;
+const main = rows[0];
+
+if(main[1]){
+let tgl = new Date(main[1]);
+let format =
+tgl.getFullYear() + "-" +
+String(tgl.getMonth()+1).padStart(2,"0") + "-" +
+String(tgl.getDate()).padStart(2,"0");
+
+document.querySelector('[name="tanggal"]').value = format;
+}
+
+document.querySelector('[name="kk"]').value = main[2] || "";
+document.querySelector('[name="nik"]').value = main[3] || "";
+document.querySelector('[name="alamt"]').value = main[4] || "";
+
+document.querySelector('[name="jamban"]').value = main[5] || "";
+document.querySelector('[name="ventilasi"]').value = main[6] || "";
+document.querySelector('[name="gjiwa"]').value = main[7] || "";
+document.querySelector('[name="tbc"]').value = main[8] || "";
+document.querySelector('[name="hipertensi"]').value = main[9] || "";
+document.querySelector('[name="diabetes"]').value = main[10] || "";
+
+bayiContainer.innerHTML="";
+praContainer.innerHTML="";
+remajaContainer.innerHTML="";
+produktifContainer.innerHTML="";
+lansiaContainer.innerHTML="";
+
+rows.forEach(r=>{
+
+if(r[24]){
+addBayi();
+let inputs = bayiContainer.lastChild.querySelectorAll("input");
+inputs[0].value=r[24];
+inputs[1].value=r[25];
+inputs[2].value=r[26];
+inputs[3].value=r[27];
+inputs[4].value=r[28];
+inputs[5].value=r[29];
+}
+
+if(r[30]){
+addPra();
+let inputs = praContainer.lastChild.querySelectorAll("input");
+inputs[0].value=r[30];
+inputs[1].value=r[31];
+inputs[2].value=r[32];
+inputs[3].value=r[33];
+inputs[4].value=r[34];
+inputs[5].value=r[35];
+inputs[6].value=r[36];
+inputs[7].value=r[37];
+}
+
+if(r[38]){
+addRemaja();
+let inputs = remajaContainer.lastChild.querySelectorAll("input");
+inputs[0].value=r[38];
+inputs[1].value=r[39];
+inputs[2].value=r[40];
+inputs[3].value=r[41];
+inputs[4].value=r[42];
+inputs[5].value=r[43];
+inputs[6].value=r[44];
+inputs[7].value=r[45];
+}
+
+if(r[46]){
+addProduktif();
+let inputs = produktifContainer.lastChild.querySelectorAll("input");
+inputs[0].value=r[46];
+inputs[1].value=r[47];
+inputs[2].value=r[48];
+inputs[3].value=r[49];
+inputs[4].value=r[50];
+inputs[5].value=r[51];
+inputs[6].value=r[52];
+}
+
+if(r[53]){
+addLansia();
+let inputs = lansiaContainer.lastChild.querySelectorAll("input");
+inputs[0].value=r[53];
+inputs[1].value=r[54];
+inputs[2].value=r[55];
+inputs[3].value=r[56];
+inputs[4].value=r[57];
+inputs[5].value=r[58];
+}
+
+});
+
+document.getElementById("mode").value="edit";
+document.getElementById("editRow").value=data.row;
+
+alert("Data ditemukan, silakan edit");
+
+})
+
+.catch(err=>{
+console.log(err);
+alert("Gagal mengambil data");
+});
+
+}
+
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
