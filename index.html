@@ -63,7 +63,7 @@
     </select>
     <br><br>
 
-    <label>Cari Data Berdasarkan NIK :</label>
+    <label>Cari Data yang Sudah Di-Entry Berdasarkan NIK Kepala Keluarga :</label>
     <input type="text" id="cariNik">
 
     <button type="button" onclick="cariData()">Cari Data</button>
@@ -235,12 +235,14 @@
 
 <div class="card">
     <h3>Usia Produktif (19 - 59 th)-  kosongi bila tidak ada usia produktif (Y/T)</h3>
+    <h4>kecuali Riwayat penyakit (Hipertensi, DM, Stroke, Jantung, Asma, Kanker, Kolesterol), sebutkan jenis penyakitnya</h4>
     <div id="produktifContainer"></div>
     <button type="button" class="add-btn" onclick="addProduktif()">+ Tambah Produktif</button>
   </div>
 
 <div class="card">
     <h3>Lansia (60 tahun ke atas)-  kosongi bila tidak ada lansia (Y/T)</h3>
+    <h4>kecuali Riwayat penyakit (Hipertensi, DM, Stroke, Jantung, Asma, Kanker, Kolesterol), sebutkan jenis penyakitnya</h4>
     <div id="lansiaContainer"></div>
     <button type="button" class="add-btn" onclick="addLansia()">+ Tambah Lansia</button>
   </div>
@@ -553,6 +555,7 @@ alert("Gagal mengambil data");
 
 </body>
 </html>
+
 
 
 
